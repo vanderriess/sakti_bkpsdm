@@ -1,0 +1,55 @@
+
+body {
+  background-image: url('images/red.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  font-size: clamp(1rem, 1.5vw, 1.25rem);
+}
+
+html.dark body {
+  background-image: none;
+  background-color: #111827;
+}
+
+html {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.popup-buttons {
+  position: relative;
+  top: 1%;
+  left: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  background-color: transparent;
+  padding: 10px 20px;
+  border-radius: 8px;
+  opacity: 0;
+  transform: translateY(-5px);
+  pointer-events: none;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  z-index: 1;
+}
+
+.popup-buttons button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.container:hover .popup-buttons {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+footer {
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+  text-align: center;
+  font-size: 14px;
+  color: #ffffff;
+}

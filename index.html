@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="id" class="">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SAKTI BKPSDM - Beranda</title>
+  <link rel="icon" href="images/favicon.png" type="image/png">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="h-screen w-screen flex items-center justify-center text-white text-center relative">
+
+  <!-- Logo pojok kiri atas -->
+  <div class="fixed top-4 left-4 z-50">
+    <img src="images/logo-minut.png" alt="Logo Minut" class="w-20 h-20 sm:w-25 sm:h-25">
+  </div>
+
+  <!-- Tombol Mode Gelap/Terang -->
+  <button id="theme-toggle" onclick="toggleDark()" class="fixed top-4 right-4 z-50 bg-white dark:bg-gray-700 text-black dark:text-white p-2 rounded-full shadow-lg hover:scale-110 transition" aria-label="Toggle theme">
+    <span id="theme-icon">🌙</span>
+  </button>
+
+  <!-- LOADING SCREEN -->
+  <div id="loading" class="fixed inset-0 bg-white dark:bg-black z-40 flex items-center justify-center">
+    <div class="animate-spin rounded-full h-16 w-16 border-4 border-blue-500 border-t-transparent"></div>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div class="bg-black bg-opacity-30 p-6 rounded-xl max-w-3xl w-full mx-4 z-10">
+    <h1 class="text-2xl sm:text-3xl md:text-4xl font-semibold mb-4">
+      <u>Selamat Datang di 
+        <span class="inline-block border-2 border-blue-500 rounded-xl px-4 py-1 ml-2 transition-all duration-300 hover:bg-blue-500 hover:text-white">
+          <span class="text-red-500 font-bold">SAKTI</span>
+          <span class="text-blue-500 font-bold">BKPSDM</span>
+        </span>
+      </u>
+    </h1>
+    <p class="text-lg mb-4">Sistem Aplikasi Layanan Kepegawaian Terintegrasi</p>
+    <div class="inline-block bg-white px-4 py-2 rounded-full mb-6">
+      <span class="text-blue-800 font-bold">Badan Kepegawaian serta Pelatihan Sumber Daya Manusia</span><br>
+      <span class="text-red-400 font-bold">Kabupaten Minahasa Utara</span>
+    </div>
+
+    <!-- LOGO UTAMA DAN POPUP -->
+    <div class="flex justify-center">
+      <div class="container">
+        <button class="transition-transform duration-300 hover:scale-105">
+          <a href="index2.html" target="_blank" rel="noopener noreferrer">
+            <img src="images/saktii.png" alt="Logo SAKTI" class="w-32 h-32 sm:w-36 sm:h-36 rounded-full bg-white p-2 shadow-lg">
+          </a>
+        </button>
+        <div class="popup-buttons mt-4">
+          <button><a href="https://asndigital.bkn.go.id/" target="_blank" rel="noopener noreferrer"><img src="images/BKN.PNG" class="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-white p-2 shadow-md"></a></button>
+          <button><a href="https://simpeg.minut.go.id/" target="_blank" rel="noopener noreferrer"><img src="images/SIMPEG.PNG" class="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-white p-2 shadow-md"></a></button>
+          <button><a href="https://simpeg.minut.go.id/" target="_blank" rel="noopener noreferrer"><img src="images/saktii.png" class="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-white p-2 shadow-md"></a></button>
+          <button><a href="https://ekinerja.bkpsdm-minut.info/" target="_blank" rel="noopener noreferrer"><img src="images/ekin.png" class="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-white p-2 shadow-md"></a></button>
+          <button><a href="https://imapalus.bkpsdm-minut.info/" target="_blank" rel="noopener noreferrer"><img src="images/imapalus.png" class="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-white p-2 shadow-md"></a></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    &copy; 2025 BKPSDM Minahasa Utara. All rights reserved.
+  </footer>
+
+  <!-- SCRIPT -->
+  <script>
+    window.addEventListener('load', () => {
+      const loader = document.getElementById('loading');
+      loader.style.opacity = '0';
+      loader.style.pointerEvents = 'none';
+      setTimeout(() => loader.style.display = 'none', 500);
+    });
+
+    function toggleDark() {
+      const html = document.documentElement;
+      html.classList.toggle("dark");
+      localStorage.setItem("theme", html.classList.contains("dark") ? "dark" : "light");
+      updateIcon();
+    }
+
+    function updateIcon() {
+      const icon = document.getElementById("theme-icon");
+      icon.textContent = document.documentElement.classList.contains("dark") ? "🌞" : "🌙";
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const savedTheme = localStorage.getItem("theme");
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (savedTheme === "dark" || (!savedTheme && prefersDark)) {
+        document.documentElement.classList.add("dark");
+      }
+      updateIcon();
+    });
+  </script>
+</body>
+</html>
